@@ -1,0 +1,52 @@
+
+		<svg
+		style="width: 128px; height: 128px; border-radius: 50%;"
+		width="128"
+		height="128"
+		viewBox="0 0 128 128"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<defs>
+			<clipPath id="circleClip">
+				<circle cx="64" cy="64" r="64" />
+			</clipPath>
+			<filter
+				id="filter_blur"
+				x="-200"
+				y="-200"
+				width="528"
+				height="528"
+				filterUnits="userSpaceOnUse"
+				color-interpolation-filters="sRGB"
+			>
+				<feGaussianBlur stdDeviation="20" />
+			</filter>
+			<!-- Blur filter for the white ring -->
+			<filter id="blurRing" x="-50" y="-50" width="228" height="228" filterUnits="userSpaceOnUse">
+				<feGaussianBlur stdDeviation="16" />
+			</filter>
+			<!-- White inner ring gradient -->
+			<radialGradient id="innerShadowRing" cx="0.5" cy="0.5" r="0.4">
+				<stop offset="0.9" stop-color="rgba(255, 255, 255, 0)" />
+				<stop offset="1" stop-color="rgba(255, 255, 255, 1)" />
+			</radialGradient>
+		</defs>
+
+		<g clip-path="url(#circleClip)">
+			<rect width="128" height="128" fill="white" />
+			<g filter="url(#filter_blur)">
+					<circle cx="20" cy="62" r="102" fill="#7FDEFF" />
+				</g><g filter="url(#filter_blur)">
+					<circle cx="10" cy="101" r="52" fill="#E1FBFF" />
+				</g><g filter="url(#filter_blur)">
+					<circle cx="6" cy="109" r="129" fill="#8BB5FF" />
+				</g><g filter="url(#filter_blur)">
+					<path d="M36 71 C106 83, 47 107, 48 81" fill="#FFA800" />
+				</g><g filter="url(#filter_blur)">
+					<path d="M107 34 C50 28, 93 127, 3 52" fill="#8BB5FF" />
+				</g>
+			<!-- White inner ring with blur effect -->
+			<circle cx="64" cy="64" r="64" fill="url(#innerShadowRing)" filter="url(#blurRing)" />
+		</g>
+	</svg>

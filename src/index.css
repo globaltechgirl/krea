@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  /*  Default (Light) Theme */
+  :root {
+    --background: #ffffff;
+    --black-100: #000000;
+    --black-200: #1b1c1e;
+    --black-300: #4a4a4a;
+    --white-100: #ffffff;
+    --white-200: #f5f5f5;
+    --white-300: #e2e2e2;
+    --box-100: #7c97a8;
+    --box-200: #fcae18;
+    --box-300: #01c6fe;
+    --box-400: #4a4a4a;
+    --box-500: #6e4395;
+    --box-600: #55948f;
+    --box-700: #000000;
+    --box-800: #fa6a69;
+    --box-900: #1b1c1e;
+    --grid-100: #ffffff;
+    --grid-200: #f5f5f5;
+    --grid-300: #e2e2e2;
+    --popup-100: #ffffff;
+  }
+}
+
+[data-theme="dark"] {
+  --background: #101010;
+  --black-100: #ffffff;
+  --black-200: #f5f5f5;
+  --black-300: #e2e2e2;
+  --white-100: #ffffff;
+  --white-200: #202020;
+  --white-300: #262626;
+  --box-100: #7c97a8;
+  --box-200: #fcae18;
+  --box-300: #01c6fe;
+  --box-400: #4a4a4a;
+  --box-500: #6e4395;
+  --box-600: #55948f;
+  --box-700: #000000;
+  --box-800: #fa6a69;
+  --box-900: #1b1c1e;
+  --grid-100: #262626;
+  --grid-200: #202020;
+  --grid-300: #202020;
+  --popup-100: #262626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: white;
+  color: black;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
