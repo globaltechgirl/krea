@@ -44,6 +44,7 @@ export default function Generates() {
   const [filter, setFilter] = useState<FilterType>("filter");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [columns, setColumns] = useState(4);
 
   const filteredItems = generateItems.filter((item, i) => {
     if (filter === "new") return item.isNew;
@@ -62,17 +63,34 @@ export default function Generates() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const updateColumns = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setColumns(1); 
+      } else if (width < 1200) {
+        setColumns(2); 
+      } else {
+        setColumns(4);
+      }
+    };
+
+    updateColumns();
+    window.addEventListener("resize", updateColumns);
+    return () => window.removeEventListener("resize", updateColumns);
+  }, []);
+
   const containerStyles: CSSProperties = { 
     display: "flex", 
     flexDirection: "column", 
-    width: "95%", 
+    width: "93%", 
     margin: "0 auto",
     marginTop: "20px",
   };
   
   const gridStyles: CSSProperties = { 
     display: "grid", 
-    gridTemplateColumns: "repeat(4, 1fr)", 
+    gridTemplateColumns: `repeat(${columns}, 1fr)`, 
     gap: 10, 
     marginTop: 20 
   };

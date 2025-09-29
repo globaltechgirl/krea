@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import { Box, Text, ActionIcon, Group } from "@mantine/core";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
@@ -32,13 +32,30 @@ const galleryItems: GalleryItem[] = [
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
-  const visibleCount = 4;
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const isFirstSlide = index === 0;
   const isLastSlide = index >= galleryItems.length - visibleCount;
 
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setVisibleCount(1); 
+      } else if (width < 1200) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(4);
+      }
+    };
+
+    updateVisibleCount(); 
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
   const containerStyles: CSSProperties = { 
-    width: "95%", 
+    width: "93%", 
     margin: "0 auto", 
     marginTop: 20,
     marginBottom: "-70px",

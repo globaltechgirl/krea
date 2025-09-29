@@ -103,6 +103,8 @@ export default function Features() {
   const isFirstSlide = index === 0;
   const isLastSlide = index === slides.length - 1;
 
+  const [slideFlex, setSlideFlex] = useState("calc(100% / 1.5)");
+
   useEffect(() => {
     if (!isPlaying || paused) return;
 
@@ -112,6 +114,24 @@ export default function Features() {
       if (timerRef.current) window.clearInterval(timerRef.current);
     };
   }, [isPlaying, paused]);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setSlideFlex("calc(100% / 0.8)");
+      } else if (width < 1200) {
+        setSlideFlex("calc(100% / 1.2)");
+      } else {
+        setSlideFlex("calc(100% / 1.5)");
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const nextSlide = () => {
     setTransitioning(true);
@@ -172,7 +192,7 @@ export default function Features() {
   };
 
   const slideStyles: CSSProperties = {
-    flex: "0 0 calc(100% / 1.5)",
+    flex: `0 0 ${slideFlex}`,
     borderRadius: 12,
     background: "var(--white-200)",
     padding: 9,
